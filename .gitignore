@@ -1,0 +1,37 @@
+# 忽略目标文件
+*.obj
+
+# 忽略可执行文件
+*.exe
+
+# 忽略.vs文件夹
+.vs/
+
+# 忽略.suo文件
+*.suo
+
+# 忽略预编译头文件（如果有）
+*.pch
+
+# 忽略备份文件
+*~
+
+
+# 忽略 Visual Studio 生成的编译文件
+*.idb
+*.pdb
+*.ilk
+*.obj
+*.sdf
+*.aps
+*.ncb
+*.suo
+*.ipch
+*.tlog
+*.log
+*.cache
+*.VC.db
+*.VC.opendb
+Debug/
+Release/
+x64/
