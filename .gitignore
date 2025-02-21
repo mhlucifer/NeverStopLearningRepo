@@ -35,3 +35,9 @@
 Debug/
 Release/
 x64/
+# 忽略 Visual Studio 生成的文件
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
