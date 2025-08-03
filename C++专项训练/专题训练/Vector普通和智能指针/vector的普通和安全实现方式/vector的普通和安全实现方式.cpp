@@ -22,6 +22,23 @@ private:
 		new_data = nullptr;
 	}
 
+	MyVector(const MyVector& other)
+	{
+		m_data = new int[other.size()];
+		for (size_t i = 0; i < other.m_size; i++)
+		{
+			m_data[i] = other.m_data[i];
+		}
+		m_size = other.m_size;
+		m_capacity = other.m_size;
+
+	}
+
+	MyVector& operator= (const MyVector& other)
+	{
+
+	}
+
 public:
 	MyVector() :m_data(nullptr), m_size(0), m_capacity(0) {};
 	~MyVector()
