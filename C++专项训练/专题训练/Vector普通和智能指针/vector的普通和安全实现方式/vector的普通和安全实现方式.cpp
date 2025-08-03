@@ -22,6 +22,15 @@ private:
 		new_data = nullptr;
 	}
 
+
+public:
+	MyVector() :m_data(nullptr), m_size(0), m_capacity(0) {};
+	~MyVector()
+	{
+		delete[] m_data;
+	}
+
+
 	MyVector(const MyVector& other)
 	{
 		m_data = new int[other.size()];
@@ -31,19 +40,13 @@ private:
 		}
 		m_size = other.m_size;
 		m_capacity = other.m_size;
+		std::cout << "MyVector 拷贝构造函数被调用" << std::endl;
 
 	}
 
 	MyVector& operator= (const MyVector& other)
 	{
 
-	}
-
-public:
-	MyVector() :m_data(nullptr), m_size(0), m_capacity(0) {};
-	~MyVector()
-	{
-		delete[] m_data;
 	}
 
 	void push_back(const int& value)
@@ -81,7 +84,8 @@ int main()
 			<< "Size: " << vec.size()
 			<< ", Capacity: " << vec.capacity() << std::endl;
 	}
-
+	vec.push_back(200);
+	MyVector vec2 = vec;
 	return 0;
 }
 
