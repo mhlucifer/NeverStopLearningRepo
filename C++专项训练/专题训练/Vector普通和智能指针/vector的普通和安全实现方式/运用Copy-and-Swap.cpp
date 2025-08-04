@@ -1,4 +1,3 @@
-﻿// vector的普通和安全实现方式.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 #include <iostream>
 
 
@@ -31,7 +30,7 @@ public:
 	}
 
 
-	MyVector(const MyVector& other):m_size(other.m_size), m_capacity(other.m_capacity)
+	MyVector(const MyVector& other) :m_size(other.m_size), m_capacity(other.m_capacity)
 	{
 		m_data = new int[other.m_capacity];
 		for (size_t i = 0; i < m_size; i++)
@@ -41,24 +40,22 @@ public:
 		std::cout << "MyVector 拷贝构造函数被调用" << std::endl;
 	}
 
-	MyVector& operator= (const MyVector& other)
+	void swap(MyVector& other) noexcept {
+		using std::swap;
+		swap(m_data, other.m_data);
+		swap(m_size, other.m_size);
+		swap(m_capacity, other.m_capacity);
+	}
+
+	MyVector& operator=(MyVector other) // 1. 关键改动：参数从 const MyVector& 变为 MyVector
 	{
-		std::cout << "拷贝赋值运算符被调用！" << std::endl;
-		if (this == &other)
-		{
-			return *this;
-		}
-		delete[] m_data;
-		m_size = other.m_size;
-		m_capacity = other.m_capacity;
-		m_data = new int[m_capacity];
-		for (int i = 0; i < m_size; i++)
-		{
-			m_data[i] = other.m_data[i];
-		}
+		std::cout << "Copy-and-Swap 版本的赋值运算符被调用！" << std::endl;
 
+		// 2. 关键操作：与“副本”交换数据
+		swap(other);
+
+		// 3. 按约定返回
 		return *this;
-
 	}
 	
 
@@ -83,7 +80,7 @@ public:
 	}
 
 
-	
+
 };
 
 void print_vector_state(const char* name, const MyVector& vec) {
