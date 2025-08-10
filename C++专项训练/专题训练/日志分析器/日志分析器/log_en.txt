@@ -1,0 +1,2 @@
+[INFO] Hello World
+[ERROR] Test message
