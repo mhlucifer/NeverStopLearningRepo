@@ -1,6 +1,8 @@
 #include"parser.h"
 #include<iostream>
 #include<map>
+#include<iterator>
+#include <algorithm> 
 // 在这里，我们给出 ParseLogLine 函数的具体实现
 LogEntry ParseLogLine(const std::string& line) {
 
@@ -93,4 +95,24 @@ void PrintLogSummary(const std::vector<LogEntry>& logs) {
     }
     std::cout << "--- 报告结束 ---\n";
     
+}
+
+
+std::vector<LogEntry> FilterLogsByLevel(const std::vector<LogEntry>& logs, const std::string& level) {
+    std::vector<LogEntry> filtered_logs; // 准备一个空vector，用来存放筛选结果
+
+    // copy_if 需要四个参数：
+    // 1. 从哪里开始拷贝 (logs.begin())
+    // 2. 到哪里结束拷贝 (logs.end())
+    // 3. 拷贝到哪里去 (这里用了一个辅助工具 std::back_inserter)
+    // 4. 拷贝的“条件” (我们的Lambda表达式)
+    std::copy_if(logs.begin(), logs.end(),
+        std::back_inserter(filtered_logs),
+        [&level](const LogEntry& entry) {
+            // 这就是我们的“筛选指南”：
+            // 如果这行日志的级别，等于我们想要的级别，就返回 true
+            return entry.logLevel == level;
+        });
+
+    return filtered_logs;
 }

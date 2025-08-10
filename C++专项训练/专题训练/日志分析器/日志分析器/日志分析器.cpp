@@ -13,10 +13,39 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include<algorithm>
 
 // 包含我们新创建的解析模块的“说明书”
 #include "parser.h"
+void RunAnalysis(const std::vector<LogEntry>& logs)
+{
+    // 可以在这里加一个循环，打印解析后的结果来验证
+    // for (const auto& entry : logs) {
+    //     std::cout << "消息: " << entry.message << std::endl;
+    // }
+    // === 新增验证代码 ===
+    if (!logs.empty()) {
+        std::cout << "验证：第一条日志的时间戳是: [" << logs[0].timestamp << "]" << std::endl;
+        std::cout << "验证：第一条日志的级别是:   [" << logs[0].logLevel << "]" << std::endl;
+        std::cout << "验证：第一条日志的级别是:   [" << logs[0].message << "]" << std::endl;
+    }
 
+    std::cout << "\n--- 排序后时间戳预览 ---\n";
+    for (const auto& entry : logs) {
+        std::cout << entry.timestamp << std::endl;
+    }
+    PrintLogSummary(logs);
+
+
+    std::cout << "\n正在筛选所有 [ERROR] 级别的日志...\n";
+    std::vector<LogEntry> error_logs = FilterLogsByLevel(logs, "ERROR");
+
+    std::cout << "筛选完成！共找到 " << error_logs.size() << " 条 [ERROR] 日志：\n";
+    // 打印所有筛选出来的错误日志
+    for (const auto& entry : error_logs) {
+        std::cout << "  " << entry.timestamp << " " << entry.message << std::endl;
+    }
+}
 int main() {
     std::vector<LogEntry> logs; // 用来存放所有解析好的日志
     std::ifstream log_file("log.txt");
@@ -37,18 +66,14 @@ int main() {
 
     std::cout << "解析完成！总共处理了 " << logs.size() << " 条日志。\n";
 
-    // 可以在这里加一个循环，打印解析后的结果来验证
-    // for (const auto& entry : logs) {
-    //     std::cout << "消息: " << entry.message << std::endl;
-    // }
-    // === 新增验证代码 ===
-    if (!logs.empty()) {
-        std::cout << "验证：第一条日志的时间戳是: [" << logs[0].timestamp << "]" << std::endl;
-        std::cout << "验证：第一条日志的级别是:   [" << logs[0].logLevel << "]" << std::endl;
-        std::cout << "验证：第一条日志的级别是:   [" << logs[0].message << "]" << std::endl;
-    }
 
-    PrintLogSummary(logs);
+    std::cout << "\n正在按时间戳对日志进行排序...\n";
+    std::sort(logs.begin(), logs.end(), [](const LogEntry& a, const LogEntry& b)
+        {
+            return a.timestamp < b.timestamp;
+        });
+    std::cout << "排序完成！\n";
+    RunAnalysis(logs);
     return 0;
 }
 

@@ -15,3 +15,8 @@ LogEntry ParseLogLine(const std::string& line);
 
 // 3. 声明我们的“情报分析官”函数
 void PrintLogSummary(const std::vector<LogEntry>& logs);
+
+// 4. 声明“情报检索”函数
+//    它接收所有日志，和一个要筛选的日志级别字符串
+//    它返回一个新的vector，里面只包含符合条件的日志
+std::vector<LogEntry> FilterLogsByLevel(const std::vector<LogEntry>& logs, const std::string& level);
