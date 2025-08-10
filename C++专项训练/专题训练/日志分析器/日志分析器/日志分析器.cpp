@@ -47,6 +47,8 @@ int main() {
         std::cout << "验证：第一条日志的级别是:   [" << logs[0].logLevel << "]" << std::endl;
         std::cout << "验证：第一条日志的级别是:   [" << logs[0].message << "]" << std::endl;
     }
+
+    PrintLogSummary(logs);
     return 0;
 }
 

@@ -2,5 +2,17 @@
 [2025-08-11 12:34:56] [INFO]    ModuleA: System initialized successfully.
 [2025-08-12 12:34:56] [INFO]    ModuleA: System initialized successfully.
 [2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-10 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-11 12:34:56] [WARNING]    ModuleA: System initialized successfully.
+[2025-08-12 12:34:56] [WARNING]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [WARNING]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [ERROR]    ModuleA: System initialized successfully.
+[2025-08-13 12:34:56] [INFO]    ModuleA: System initialized successfully.
 这是随机生成的日志文档
 this is sdasdas sadsadsa 

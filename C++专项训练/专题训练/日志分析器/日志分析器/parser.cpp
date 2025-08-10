@@ -1,7 +1,13 @@
 #include"parser.h"
 #include<iostream>
+#include<map>
 // 在这里，我们给出 ParseLogLine 函数的具体实现
 LogEntry ParseLogLine(const std::string& line) {
+
+    // === 临时安装的“监视器”，用于调试 ===
+    // 打印出函数收到的原始 line
+    std::cout << "正在解析: [" << line << "]\n";
+
     LogEntry entry;
 
     size_t start_bracket = line.find('[');
@@ -37,8 +43,54 @@ LogEntry ParseLogLine(const std::string& line) {
         entry.message = line.substr(message_start_bracket);
     }
     
-
- 
-
     return entry;
+}
+
+void PrintLogSummary(const std::vector<LogEntry>& logs) {
+
+    std::cout << "\n-- - 日志分析报告-- - \n";
+    std::cout << "总计日志条数: " << logs.size() << std::endl;
+
+    //// 1. 定义三个计数器(简单实现)
+    //int info_count = 0;
+    //int warning_count = 0;
+    //int error_count = 0;
+    //for (const auto& entry : logs)
+    //{
+    //    if (entry.logLevel == "INFO")
+    //    {
+    //        info_count++;
+    //    }
+    //    else if (entry.logLevel == "WARNING")
+    //    {
+    //        warning_count++;
+    //    }
+    //    else if (entry.logLevel == "ERROR") {
+    //        error_count++;
+    //    }
+    //}
+
+    //// 3. 打印统计结果
+    //std::cout << "[INFO]: " << info_count << std::endl;
+    //std::cout << "[WARNING]: " << warning_count << std::endl;
+    //std::cout << "[ERROR]: " << error_count << std::endl;
+    //std::cout << "--- 报告结束 ---\n";
+    
+    // 1. 创建一个 map 作为我们的“自动记账本”
+    std::map<std::string, int> counts;
+
+    //2.遍历日志
+    for (const auto& entry : logs)
+    {
+        counts[entry.logLevel]++;
+    }
+
+    // 4. 使用范围for循环，遍历map并打印报告
+    //    pair.first 是键 (如 "INFO"), pair.second 是值 (数量)
+    for (const auto& pair : counts)
+    {
+        std::cout << "[" << pair.first << "]" << pair.second << std::endl;
+    }
+    std::cout << "--- 报告结束 ---\n";
+    
 }

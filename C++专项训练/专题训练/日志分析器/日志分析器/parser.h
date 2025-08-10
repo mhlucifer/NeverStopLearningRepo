@@ -12,3 +12,6 @@ struct LogEntry {
 //    这里只是一个声明（像个路标），告诉别人有这么一个函数存在。
 //    具体的实现（函数体{...}）我们不放在这里。
 LogEntry ParseLogLine(const std::string& line);
+
+// 3. 声明我们的“情报分析官”函数
+void PrintLogSummary(const std::vector<LogEntry>& logs);
