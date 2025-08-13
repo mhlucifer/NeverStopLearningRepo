@@ -18,6 +18,7 @@ struct InvalidValueError : public std::exception {
     }
 };
 
+//异常类型
 
 // 解析记录，如果成功，打印ID和Value
 void parseRecord(const std::string& record) {
