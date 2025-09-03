@@ -16,7 +16,7 @@ int main()
 	}
 	for (int i = 0; i < sizeof(arr) / sizeof(*arr); i++)
 	{
-		if((err))
+		
 	}
 	sqlist_insert(list, 1, 10);
 	sqllist_display(list);
